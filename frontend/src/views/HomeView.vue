@@ -24,35 +24,14 @@
 		<v-row>
 			<v-col class=" col-sm-12 col-md-6 offset-md-3">
 				<v-sheet min-height="70vh"	rounded="lg">
-					<v-simple-table height="300px">
-						<template v-slot:default>
-							<thead>
-							<tr>
-								<th class="text-left">
-									Name
-								</th>
-								<th class="text-left">
-									Artist
-								</th>
-								<th class="text-left">
-									Actions
-								</th>
-							</tr>
-							</thead>
-							<tbody>
-							<tr
-									v-for="item in filteredSongs"
-									:key="item.name"
-							>
-								<td>{{ item.name }}</td>
-								<td>{{ item.artist }}</td>
-								<td>
-									Ikonice
-								</td>
-							</tr>
-							</tbody>
-						</template>
-					</v-simple-table>
+					<v-data-table
+							@click:row="clickRow"
+							height="300px"
+							:headers="headers"
+							:items="filteredSongs"
+							:items-per-page="20"
+							class="elevation-1"
+					></v-data-table>
 				</v-sheet>
 			</v-col>
 
@@ -66,32 +45,24 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import store from '../store'
+
 export default {
+	name: 'HomeView',
+	components: {
+	},
 	data () {
 		return {
 			searchField: "",
 			searchType: "",
 			type: ["Name", "Artist"],
-			songs: [
-				{
-					name: "Pismo Moja",
-					artist: "Oliver Dragojević"
-				},
-				{
-					name: "Imala je lijepu rupicu na bradi",
-					artist: "Oliver Dragojević"
-				},
-				{
-					name: "Mjerkam te mjerkam",
-					artist: "Zdravko Čolić"
-				}
+			songs: [],
+			headers: [
+				{ text: 'Song',	value: 'name' },
+				{ text: 'Artist', value: 'artist' },
 			],
 		}
 	},
-  name: 'HomeView',
-  components: {
-  },
 	computed: {
 		filteredSongs() {
 			return this.songs.filter(item => {
@@ -104,5 +75,13 @@ export default {
 			})
 		}
 	},
+	methods: {
+		clickRow(event, item) {
+			this.$router.push({ name: 'song', query: { id: item.item.id }})
+		}
+	},
+	created() {
+		this.songs.push(...store.getters.getSongs)
+	}
 }
 </script>

@@ -9,6 +9,9 @@
 			</v-col>
 			<v-col class="col-sm-12 col-md-6 offset-md-3">
 				<v-sheet rounded="lg">
+					<p v-if="songData===''">
+						No lyrics for song
+					</p>
 					<pre>{{songData}}</pre>
 				</v-sheet>
 			</v-col>
@@ -22,49 +25,15 @@ export default {
 	data () {
 		return {
 			songData: `
-				PISMO MOJA – Oliver
-				[intro]    B   F   Gm   D#  //  B  F  D#
-				B     F    Gm   D#
-				Pismo moja iscidi san dušu u tebe
-				B     F    Gm   D#
-				I pustija te u svit zbog ljubavi moje
-				B     F
-				Nesritne da mi svitliš put dok tražim je.
-
-				Svu lipotu svita ja stavija san tu
-				U ovu šaku riči u moju nevoju
-				I sudbinu da mi svitliš put dok tražim je,
-
-				Gm        D#                      B         F D# F-F#-Gm
-				Jer ova duša dalje   bez nje više ne može...
-				REF x2
-
-				Gm    D#       B   (F)
-				Pismo moja leti mi do nje
-				Gm    D#        B   (F)
-				I šapni joj riči najlipše
-				D#      F
-				Da još uvik nosin za nju
-				Dm     Gm
-				Po srid srca živu ranu
-				* D#    F // ** D#  F  B
-				koju samo ona ličit zna.
-
-				--- đitra solo s akordima 1. verse---
-				Svu lipotu svita ....
-				REF samo strumm
-				REF normalno
-				B       D#  F           x2
-				znaaaaaa….
-				pismo mojaaa..    B
 			`,
 		}
 	},
 	methods: {
-		sampleMethod(){
-		},
 	},
-	created() {
+	mounted() {
+		let songId = this.$route.query.id
+		let song = this.$store.getters.getSong(songId)
+		this.songData = song.lyrics
 	}
 }
 </script>

@@ -8,9 +8,6 @@
 						<v-btn text @click="toHomePage()">
 							Home
 						</v-btn>
-						<v-btn text @click="toSongPage()">
-							Song
-						</v-btn>
 						<v-btn text @click="toCollectionsPage()">
 							Collections
 						</v-btn>
