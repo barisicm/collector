@@ -55,6 +55,12 @@
 					</v-simple-table>
 				</v-sheet>
 			</v-col>
+
+		</v-row>
+		<v-row class="justify-end">
+			<v-btn fab large color="primary" right>
+				<v-icon>mdi-plus-circle-outline</v-icon>
+			</v-btn>
 		</v-row>
 	</v-container>
 </template>

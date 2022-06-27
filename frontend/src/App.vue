@@ -11,6 +11,9 @@
 						<v-btn text @click="toSongPage()">
 							Song
 						</v-btn>
+						<v-btn text @click="toCollectionsPage()">
+							Collections
+						</v-btn>
 					</v-container>
 				</v-col>
 			</v-row>
@@ -34,6 +37,9 @@ export default {
 		},
 		toSongPage() {
 			this.$router.push('song')
+		},
+		toCollectionsPage() {
+			this.$router.push('collections')
 		}
 	}
 }
