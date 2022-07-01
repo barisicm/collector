@@ -11,6 +11,9 @@
 						<v-btn text @click="toCollectionsPage()">
 							Collections
 						</v-btn>
+						<v-btn text @click="toSettingsPage()">
+							Settings
+						</v-btn>
 					</v-container>
 				</v-col>
 			</v-row>
@@ -32,16 +35,22 @@ export default {
 		toHomePage() {
 			this.$router.push('/')
 		},
-		toSongPage() {
-			this.$router.push('song')
-		},
 		toCollectionsPage() {
-			this.$router.push('collections')
+			this.$router.push('collections-list')
+		},
+		toSettingsPage() {
+			this.$router.push('settings')
 		}
 	}
 }
 </script>
 <style lang="scss">
+
+/* This rule disables scroll down to refresh page on mobile. */
+html {
+	overscroll-behavior: contain;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
