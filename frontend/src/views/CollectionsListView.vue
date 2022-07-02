@@ -63,6 +63,11 @@ export default {
 	created() {
 		this.collections.push(...store.getters.getCollections)
 	},
+	methods: {
+		clickRow(event, item) {
+			this.$router.push({ name: 'collection', query: { id: item.item.id }})
+		}
+	},
 	computed: {
 		filteredCollections() {
 			return this.collections.filter(item => {
