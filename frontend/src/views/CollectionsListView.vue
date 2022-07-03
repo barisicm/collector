@@ -1,5 +1,6 @@
 <template>
 	<v-container >
+
 		<v-row>
 			<v-col class="col-md-4 offset-md-3">
 				<h2>Song collections</h2>

@@ -5,6 +5,12 @@
 				<h2>Song list</h2>
 			</v-col>
 		</v-row>
+		<!-- TODO: Resolve this button	-->
+		<v-row class="justify-end">
+			<v-btn fab large color="primary" right @click="createSong">
+				<v-icon>mdi-plus-circle-outline</v-icon>
+			</v-btn>
+		</v-row>
 		<div class="mt-2"></div>
 		<v-row>
 			<v-col class="col-sm-8 col-md-4 offset-md-3 ">
@@ -39,13 +45,6 @@
 					></v-data-table>
 				</v-sheet>
 			</v-col>
-
-		</v-row>
-		<!-- TODO: Resolve this button	-->
-		<v-row class="justify-end">
-			<v-btn fab large color="primary" right>
-				<v-icon>mdi-plus-circle-outline</v-icon>
-			</v-btn>
 		</v-row>
 	</v-container>
 </template>
@@ -84,6 +83,9 @@ export default {
 	methods: {
 		clickRow(event, item) {
 			this.$router.push({ name: 'song', query: { id: item.item.id }})
+		},
+		createSong() {
+			this.$router.push({ name: 'song'})
 		}
 	},
 	created() {
