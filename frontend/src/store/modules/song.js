@@ -73,7 +73,6 @@ const getters = {
 const mutations = {
     addSong(state, song) {
         state.songs.push(song)
-        console.log(state.songs)
     },
     deleteSong(state, song) {
         var songIndex = state.songs.indexOf(song)
