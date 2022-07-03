@@ -1,6 +1,5 @@
 <template>
-	<v-container >
-
+	<v-container>
 		<v-row>
 			<v-col class="col-md-4 offset-md-3">
 				<h2>Song collections</h2>
@@ -40,6 +39,51 @@
 				</v-sheet>
 			</v-col>
 		</v-row>
+		<!-- Component for adding a new collection -->
+		<v-row>
+			<v-col class="col-sm-8 col-md-6 offset-md-3">
+				<v-text-field
+						label="Collection Name"
+						v-model="collectionName"
+						hide-details=true
+				></v-text-field>
+			</v-col>
+
+			<v-col class="col-sm-8 col-md-4 offset-md-3">
+				<v-text-field
+						label="Search Songs"
+						v-model="collectionSearch"
+						hide-details=true
+				></v-text-field>
+			</v-col>
+			<v-col class="col-sm-4 col-md-2">
+				<v-select
+						:items="type"
+						label="by"
+						v-model="searchType"
+						hide-details=true
+				></v-select>
+			</v-col>
+			<v-col class="col-sm-8 col-md-6 offset-md-3">
+				<v-data-table
+						:headers="songListHeaders"
+						:items="songListData"
+						:items-per-page="20"
+						class="elevation-1"
+						hide-default-footer
+				>
+					<template v-slot:[`item.actions`]="{ item }">
+						<v-icon
+								small
+								class="mr-2"
+								@click="addItem(item)"
+						>
+							mdi-plus
+						</v-icon>
+					</template>
+				</v-data-table>
+			</v-col>
+		</v-row>
 	</v-container>
 </template>
 
@@ -52,6 +96,16 @@ export default {
 	name: "CollectionsView",
 	data() {
 		return {
+			songListHeaders: [
+				{ text: 'Name',	value: 'name',  sortable: false },
+				{ text: 'Artist',	value: 'artist',  sortable: false },
+				{ text: 'Actions',	value: 'actions',  sortable: false },
+			],
+			songListData: [{
+				id: 1,
+				name: "Neko ime",
+				artist: "Umjetnik"
+			}],
 			searchField: "",
 			searchType: "",
 			type: ["Name"],
@@ -67,6 +121,9 @@ export default {
 	methods: {
 		clickRow(event, item) {
 			this.$router.push({ name: 'collection', query: { id: item.item.id }})
+		},
+		addItem(item) {
+			console.log(item)
 		}
 	},
 	computed: {

@@ -133,13 +133,10 @@ export default {
 	methods: {
 		updateOrSave() {
 			this.form.disabled = !this.form.disabled
-
-			let localSongObject = {}
-			Object.assign(localSongObject, this.song)
-			if ('id' in localSongObject) {
-				this.save()
-			} else {
+			if (Object.prototype.hasOwnProperty.call(this.form.song, "id")) {
 				this.update()
+			} else {
+				this.save()
 			}
 		},
 		save() {
