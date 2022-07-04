@@ -8,7 +8,7 @@
 		</v-row>
 		<!--Component Icons-->
 		<v-row>
-			<v-col class="">
+			<v-col class="col-sm-12 col-md-6 offset-md-3">
 				<v-btn
 						class="mx-2"
 						fab

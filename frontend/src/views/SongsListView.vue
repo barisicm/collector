@@ -1,49 +1,57 @@
 <template>
   <v-container>
 		<v-row>
-			<v-col class="col-md-4 offset-md-3 ">
+			<v-col class="col-sm-12 col-md-6 offset-md-3">
 				<h2>Song list</h2>
-			</v-col>
-		</v-row>
-		<!-- TODO: Resolve this button	-->
-		<v-row class="justify-end">
-			<v-btn fab large color="primary" right @click="createSong">
-				<v-icon>mdi-plus-circle-outline</v-icon>
-			</v-btn>
-		</v-row>
-		<div class="mt-2"></div>
-		<v-row>
-			<v-col class="col-sm-8 col-md-4 offset-md-3 ">
-				<v-text-field
-						label="Search catalogue"
-						placeholder="Ex. Oliver"
-						outlined
-						v-model="searchField"
-						hide-details=true
-				></v-text-field>
-			</v-col>
-			<v-col class="col-sm-4 col-md-2">
-					<v-select
-							:items="type"
-							label="by"
-							outlined
-							v-model="searchType"
-							hide-details=true
-					></v-select>
-				</v-col>
-		</v-row>
-		<v-row>
-			<v-col class=" col-sm-12 col-md-6 offset-md-3">
-				<v-sheet rounded="lg">
-					<v-data-table
-							@click:row="clickRow"
-							height="300px"
-							:headers="headers"
-							:items="filteredSongs"
-							class="elevation-1"
-							hide-default-footer
-					></v-data-table>
-				</v-sheet>
+				<div class="mt-6"></div>
+				<v-row>
+					<v-btn
+							class="mx-2"
+							fab
+							dark
+							color="indigo"
+							@click="createSong"
+					>
+						<v-icon large color="darken-2">
+							mdi-plus-circle-outline
+						</v-icon>
+					</v-btn>
+				</v-row>
+				<div class="mt-5"></div>
+				<v-row>
+					<v-col class="col-8">
+						<v-text-field
+								label="Search catalogue"
+								placeholder="Ex. Oliver"
+								outlined
+								v-model="searchField"
+								hide-details=true
+						></v-text-field>
+					</v-col>
+					<v-col class="col-4">
+						<v-select
+								:items="type"
+								label="by"
+								outlined
+								v-model="searchType"
+								hide-details=true
+						></v-select>
+					</v-col>
+				</v-row>
+				<v-row>
+					<v-col>
+						<v-sheet rounded="lg">
+							<v-data-table
+									@click:row="clickRow"
+									height="300px"
+									:headers="headers"
+									:items="filteredSongs"
+									class="elevation-1"
+									hide-default-footer
+							></v-data-table>
+						</v-sheet>
+					</v-col>
+				</v-row>
 			</v-col>
 		</v-row>
 	</v-container>
